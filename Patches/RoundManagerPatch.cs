@@ -1,6 +1,6 @@
 using HarmonyLib;
+using InteriorFogConfig.Extensions;
 using UnityEngine;
-using UnityEngine.TextCore.Text;
 
 namespace InteriorFogConfig.Patches;
 [HarmonyPatch(typeof(RoundManager))]
