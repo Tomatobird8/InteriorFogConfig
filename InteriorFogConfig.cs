@@ -13,12 +13,12 @@ namespace InteriorFogConfig
         internal new static ManualLogSource Logger { get; private set; } = null!;
         internal static Harmony? Harmony { get; set; }
 
-        public static ConfigEntry<int> fogThinness;
-        public static ConfigEntry<bool> randomFogThinness;
-        public static ConfigEntry<int> minThinness;
-        public static ConfigEntry<int> maxThinness;
-        public static ConfigEntry<bool> changeFogColor;
-        public static ConfigEntry<string> fogColor;
+        public static ConfigEntry<int> fogThinness = null!;
+        public static ConfigEntry<bool> randomFogThinness = null!;
+        public static ConfigEntry<int> minThinness = null!;
+        public static ConfigEntry<int> maxThinness = null!;
+        public static ConfigEntry<bool> changeFogColor = null!;
+        public static ConfigEntry<string> fogColor = null!;
 
         private void Awake()
         {
@@ -26,11 +26,11 @@ namespace InteriorFogConfig
             Instance = this;
 
             fogThinness = Config.Bind<int>("General","FogThinness",5,"Control the density of the fog. Higher values make fog thinner. Ignored if RandomFogThinness is used.");
-            randomFogThinness = Config.Bind<bool>("General", "RandomFogThinness", false, "Make the density of the fog random per each round. Note that this isn't network synchronized and in multiplayer players will see different fog density."); // fix if bored
+            randomFogThinness = Config.Bind<bool>("General", "RandomFogThinness", false, "Make the density of the fog random per each round. Note that this isn't network synchronized and in multiplayer players will see different fog density.");
             minThinness = Config.Bind<int>("General", "MinThinness", 3, "Minimum thinness of the fog. The densest the fog will get. Inclusive.");
             maxThinness = Config.Bind<int>("General", "MaxThinness", 8, "Maximum thinness of the fog. The least dense the fog will get. Exclusive. Set this higher than MinThinness");
             changeFogColor = Config.Bind<bool>("General","ChangeFogColor",false,"Should the mod also change the color of the fog?");
-            fogColor = Config.Bind<string>("General","FogColor", "#261710FF", "Color of the interior fog.");
+            fogColor = Config.Bind<string>("General","FogColor", "All:#261710FF", "Color of the interior fog. Set color to all moons example: All:#261710FF. Set color to specific moons by appending moon names to the config: All:#261710FF,Experimentation:#110502FF,Assurance:#21110BFF");
 
             Patch();
 
